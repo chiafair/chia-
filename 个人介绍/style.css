@@ -1,0 +1,210 @@
+/* 基础重置：消除浏览器默认样式，统一盒模型 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* 全局样式：设置字体、背景色 */
+body {
+  font-family: "Microsoft Yahei", sans-serif;
+  line-height: 1.6;
+  color: #333;
+  background-color: #f5f5f5;
+}
+
+/* 导航栏样式：用Flex布局实现水平居中、两端对齐 */
+.header {
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 1rem 0;
+  position: fixed; /* 导航栏固定在顶部，面试常问的定位考点 */
+  top: 0;
+  width: 100%;
+  z-index: 100;
+}
+
+.nav {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex; /* Flex布局：一维排列，适合导航栏 */
+  justify-content: space-between; /* 两端对齐 */
+  align-items: center; /* 垂直居中 */
+  padding: 0 2rem;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+.nav-list {
+  display: flex; /* Flex布局：导航项水平排列 */
+  list-style: none;
+}
+
+.nav-item {
+  margin-left: 2rem;
+}
+
+.nav-item a {
+  text-decoration: none;
+  color: #333;
+  transition: color 0.3s; /* 过渡动画：hover时平滑变色 */
+}
+
+.nav-item a:hover {
+  color: #3498db; /* hover交互：导航链接变色，面试常问的CSS交互考点 */
+}
+
+/* 个人信息区样式 */
+.home-section {
+  padding: 8rem 0 4rem; /* 因为导航栏固定，所以顶部padding要大一点，避免内容被遮挡 */
+  text-align: center;
+  background-color: #fff;
+}
+
+.avatar {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%; /* 圆形头像，面试常问的border-radius考点 */
+  margin-bottom: 1rem;
+  border: 5px solid #3498db;
+}
+
+.home-section h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  color: #2c3e50;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  color: #7f8c8d;
+  margin-bottom: 1rem;
+}
+
+.intro {
+  max-width: 600px;
+  margin: 0 auto;
+  font-size: 1.1rem;
+  color: #555;
+}
+
+/* 技能展示区样式：用Grid布局实现二维排列，面试常问的Grid考点 */
+.skills-section {
+  max-width: 1200px;
+  margin: 4rem auto;
+  padding: 0 2rem;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: #2c3e50;
+  position: relative;
+}
+
+.section-title::after {
+  content: "";
+  width: 60px;
+  height: 3px;
+  background-color: #3498db;
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.skills-container {
+  display: grid; /* Grid布局：二维排列，适合技能卡片 */
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(250px, 1fr)
+  ); /* 响应式Grid：自动适配屏幕宽度，最小250px一列 */
+  gap: 2rem; /* 卡片间距 */
+}
+
+.skill-card {
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition:
+    transform 0.3s,
+    box-shadow 0.3s; /* 过渡动画：hover时平滑变化 */
+}
+
+.skill-card:hover {
+  transform: translateY(-5px); /* hover交互：卡片上移，面试常问的CSS3动画考点 */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.skill-card h3 {
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  color: #2c3e50;
+  border-bottom: 2px solid #3498db;
+  padding-bottom: 0.5rem;
+}
+
+/* 联系方式区样式 */
+.contact-section {
+  max-width: 1200px;
+  margin: 4rem auto;
+  padding: 0 2rem;
+  text-align: center;
+}
+
+.contact-container {
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.contact-container p {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+}
+
+/* 页脚样式 */
+.footer {
+  background-color: #2c3e50;
+  color: #fff;
+  text-align: center;
+  padding: 2rem 0;
+  margin-top: 2rem;
+}
+
+/* 响应式媒体查询：适配移动端，面试常问的响应式考点 */
+@media (max-width: 768px) {
+  /* 移动端导航栏：变成垂直排列 */
+  .nav {
+    flex-direction: column; /* Flex布局方向改为垂直 */
+    padding: 0 1rem;
+  }
+
+  .nav-list {
+    margin-top: 1rem;
+    flex-direction: column; /* 导航项垂直排列 */
+    width: 100%;
+  }
+
+  .nav-item {
+    margin: 0.5rem 0;
+    text-align: center;
+  }
+
+  /* 移动端个人信息区：减少顶部padding */
+  .home-section {
+    padding: 6rem 0 2rem;
+  }
+
+  /* 移动端技能卡片：减少padding */
+  .skill-card {
+    padding: 1.5rem;
+  }
+}
